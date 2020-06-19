@@ -1,3 +1,11 @@
+# 개발환경
+### Server
+* Java8
+* Spring Boot 2.3.1
+* Maven
+* JPA
+* H2
+
 # 문제
 Rest API 기반 쿠폰시스템:  
 사용자에게 할인, 선물등 쿠폰을 제공하는 서비스를 개발하려 합니다.  
