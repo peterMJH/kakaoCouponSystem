@@ -3,20 +3,21 @@ package com.peterMoon.kakaoPay.service;
 import java.util.List;
 import java.util.Optional;
 
+import com.peterMoon.kakaoPay.dto.CouponDTO;
 import com.peterMoon.kakaoPay.entity.Coupon;
 
 public interface CouponService {
 	// 쿠폰을 N개 생성
-	void setCoupon(int count);
+	void setCoupon(CouponDTO couponDTO);
 	
 	// 생성된 쿠폰중 하나를 사용자에게 지급
-	String setPublishCoupon();
+	String setIssuanceCoupon();
 	
 	// 사용자에게 지급된 쿠폰 목록 조회
-	List<Coupon> getPublishCoupons();
+	List<Coupon> getIssuanceCoupons();
 	
 	// 지급된 쿠폰중 하나를 사용 혹은 취소
-	void setUseCoupon(String code, String useYN);
+	void setUseCoupon(String code, CouponDTO couponDTO);
 	
 	// 발급된 쿠폰중 당일 만료된 전체 쿠폰 목록 조회
 	List<Coupon> getExpiredCoupons();

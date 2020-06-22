@@ -10,7 +10,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.peterMoon.kakaoPay.dto.CouponDTO;
 import com.peterMoon.kakaoPay.entity.Coupon;
+import com.peterMoon.kakaoPay.enumertation.Status;
 import com.peterMoon.kakaoPay.repository.CouponRepository;
 import com.peterMoon.kakaoPay.utils.RandomString;
 
@@ -22,9 +24,9 @@ public class CouponServiceImpl implements CouponService{
 	
 	@Override
 	@Transactional
-	public void setCoupon(int count) {
+	public void setCoupon(CouponDTO couponDTO) {
 		RandomString rs = new RandomString(16);
-		for(int i=0; i<count; i++) {
+		for(int i=0; i<couponDTO.getCount(); i++) {
 			Coupon coupon = new Coupon();
 			coupon.setCode(rs.createCoupon());
 			coupon.setExpireDate(new Date());
@@ -33,22 +35,22 @@ public class CouponServiceImpl implements CouponService{
 	}
 	
 	@Override
-	public String setPublishCoupon() {
-		List<Coupon> coupons = couponRepository.findByStatus("N");
+	public String setIssuanceCoupon() {
+		List<Coupon> coupons = couponRepository.findByIssuance(Status.N);
 		Coupon coupon = coupons.get(0);
-		coupon.setStatus("Y");
+		coupon.setIssuance(Status.Y);
 		return couponRepository.save(coupon).getCode();
 	}
 	
 	@Override
-	public List<Coupon> getPublishCoupons() {
-		return couponRepository.findByStatus("Y");
+	public List<Coupon> getIssuanceCoupons() {
+		return couponRepository.findByIssuance(Status.Y);
 	}
 	
 	@Override
-	public void setUseCoupon(String code, String useYN) {
+	public void setUseCoupon(String code, CouponDTO couponDTO) {
 		Coupon coupon = couponRepository.findByCode(code);
-		coupon.setUse(useYN);
+		coupon.setUse(couponDTO.getUseStatus());
 		couponRepository.save(coupon);
 	}
 	
@@ -58,6 +60,7 @@ public class CouponServiceImpl implements CouponService{
 		return couponRepository.findByExpireDate(date);
 	}
 	
+	/* 이후부터 요건 아님 */
 	@Override
 	public Optional<Coupon> getCoupon(Long id) {
 		return couponRepository.findById(id);
