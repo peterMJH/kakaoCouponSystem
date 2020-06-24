@@ -18,10 +18,14 @@ import org.hibernate.annotations.ColumnDefault;
 
 import com.peterMoon.kakaoPay.enumertation.Status;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class Coupon {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -43,7 +47,15 @@ public class Coupon {
 	@Enumerated(EnumType.STRING)
 	private Status use = Status.N;
 	
-	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User user;
+	@Column(name = "mail")
+	private String mail;
+	
+	@Builder
+	public Coupon(Long id, String code, Date expireDate, Status issuance, Status use) {
+		this.id = id;
+		this.code = code;
+		this.expireDate = expireDate;
+		this.issuance = issuance;
+		this.use = use;
+	}
 }

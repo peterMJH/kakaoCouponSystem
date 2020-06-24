@@ -6,10 +6,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
+@NoArgsConstructor
 public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,4 +24,11 @@ public class User {
 	
 	@Column(name = "password", nullable = false)
 	private String password;
+	
+	@Builder 
+	public User(String username, String password) {
+		this.username = username; 
+		this.password = password; 
+	}
+
 }

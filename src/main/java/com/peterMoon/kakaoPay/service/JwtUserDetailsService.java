@@ -2,6 +2,7 @@ package com.peterMoon.kakaoPay.service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -22,8 +23,9 @@ public class JwtUserDetailsService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		User user = userRepository.findByUsername(username);
-		return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities());
+		Optional<User> user = userRepository.findByUsername(username);
+		
+		return new org.springframework.security.core.userdetails.User(user.get().getUsername(), user.get().getPassword(), getAuthorities());
 	}
 
 	private Collection<? extends GrantedAuthority> getAuthorities() {

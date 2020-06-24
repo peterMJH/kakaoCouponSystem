@@ -1,6 +1,6 @@
 package com.peterMoon.kakaoPay.service;
 
-import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -14,7 +14,7 @@ import com.peterMoon.kakaoPay.dto.CouponDTO;
 import com.peterMoon.kakaoPay.entity.Coupon;
 import com.peterMoon.kakaoPay.enumertation.Status;
 import com.peterMoon.kakaoPay.repository.CouponRepository;
-import com.peterMoon.kakaoPay.utils.RandomString;
+import com.peterMoon.kakaoPay.utils.CouponUtils;
 
 @Service
 public class CouponServiceImpl implements CouponService{
@@ -24,21 +24,27 @@ public class CouponServiceImpl implements CouponService{
 	
 	@Override
 	@Transactional
-	public void setCoupon(CouponDTO couponDTO) {
-		RandomString rs = new RandomString(16);
+	public List<Coupon> setCoupon(CouponDTO couponDTO) {
+		List<Coupon> results = new ArrayList<Coupon>();
+		CouponUtils rs = new CouponUtils(16);
 		for(int i=0; i<couponDTO.getCount(); i++) {
-			Coupon coupon = new Coupon();
-			coupon.setCode(rs.createCoupon());
-			coupon.setExpireDate(new Date());
-			couponRepository.save(coupon);
+			Coupon coupon = Coupon.builder()
+						.code(rs.createCoupon())
+						.expireDate(rs.getExpireDate())
+						.build();
+			
+			Coupon result = couponRepository.save(coupon);
+			results.add(result);
 		}
+		return results;
 	}
 	
 	@Override
-	public String setIssuanceCoupon() {
+	public String setIssuanceCoupon(CouponDTO couponDTO) {
 		List<Coupon> coupons = couponRepository.findByIssuance(Status.N);
 		Coupon coupon = coupons.get(0);
 		coupon.setIssuance(Status.Y);
+		coupon.setMail(couponDTO.getMail());
 		return couponRepository.save(coupon).getCode();
 	}
 	
@@ -48,10 +54,10 @@ public class CouponServiceImpl implements CouponService{
 	}
 	
 	@Override
-	public void setUseCoupon(String code, CouponDTO couponDTO) {
+	public Coupon setUseCoupon(String code, CouponDTO couponDTO) {
 		Coupon coupon = couponRepository.findByCode(code);
 		coupon.setUse(couponDTO.getUseStatus());
-		couponRepository.save(coupon);
+		return couponRepository.save(coupon);
 	}
 	
 	@Override

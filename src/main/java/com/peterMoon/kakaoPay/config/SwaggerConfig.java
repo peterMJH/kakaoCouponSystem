@@ -21,13 +21,14 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
 @EnableSwagger2
-public class SwaggerConfig {                                    
+public class SwaggerConfig {  
+	
     @Bean
     public Docket api() { 
     	
         ParameterBuilder aParameterBuilder = new ParameterBuilder();
-        aParameterBuilder.name("token") //헤더 이름
-                .description("Access Tocken") //설명
+        aParameterBuilder.name("token")
+                .description("Access Tocken")
                 .modelRef(new ModelRef("string"))
                 .parameterType("header") 
                 .required(false)
@@ -52,7 +53,7 @@ public class SwaggerConfig {
     private ApiInfo info() {
     	return new ApiInfoBuilder()
     			.title("API Document")
-    			.description("API 상세소개 및 사용법 등")
+    			.description("API description")
     			.version("1.0")
     			.build();
     }

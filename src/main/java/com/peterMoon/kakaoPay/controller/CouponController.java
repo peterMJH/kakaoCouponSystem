@@ -23,13 +23,13 @@ public class CouponController {
 	private CouponService couponService;
 	
 	@PostMapping(value = "/coupons")
-	public void createCoupons(@RequestBody CouponDTO couponDTO) {
-		couponService.setCoupon(couponDTO);
+	public List<Coupon> createCoupons(@RequestBody CouponDTO couponDTO) {
+		return couponService.setCoupon(couponDTO);
 	}
 	
 	@PutMapping(value = "/coupons")
-	public String issuanceCoupon() {
-		return couponService.setIssuanceCoupon();
+	public String issuanceCoupon(@RequestBody CouponDTO couponDTO) {
+		return couponService.setIssuanceCoupon(couponDTO);
 	}
 	
 	@GetMapping(value = "/coupons")
@@ -38,15 +38,15 @@ public class CouponController {
 	}
 	
 	@PutMapping(value = "/coupons/{code}/use")
-	public void useCoupon(
+	public Coupon useCoupon(
 			@PathVariable String code,
 			@RequestBody CouponDTO couponDTO
 			) {
-		couponService.setUseCoupon(code, couponDTO);
+		return couponService.setUseCoupon(code, couponDTO);
 	}
 	
 	@GetMapping(value = "/coupons/expired")
 	public List<Coupon> expiredCoupons() {
-		return null;
+		return couponService.getExpiredCoupons();
 	}
 }
