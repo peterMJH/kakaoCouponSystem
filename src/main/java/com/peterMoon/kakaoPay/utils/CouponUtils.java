@@ -1,8 +1,6 @@
 package com.peterMoon.kakaoPay.utils;
 
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.Random;
 
 public class CouponUtils {
@@ -27,7 +25,7 @@ public class CouponUtils {
 		return new String(resultStr);
 	}
 	
-	public Date getExpireDate() {
-		return Date.from(LocalDateTime.now().plusDays(1).atZone(ZoneId.systemDefault()).toInstant());
+	public LocalDate getExpireDate() {
+		return LocalDate.now().plusDays(3);
 	}
 }

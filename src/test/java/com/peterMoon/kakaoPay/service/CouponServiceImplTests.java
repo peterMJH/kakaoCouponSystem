@@ -1,15 +1,11 @@
 package com.peterMoon.kakaoPay.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.CoreMatchers.any;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.BDDMockito.*;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -21,11 +17,9 @@ import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 
-import com.peterMoon.kakaoPay.dto.CouponDTO;
 import com.peterMoon.kakaoPay.entity.Coupon;
 import com.peterMoon.kakaoPay.enumertation.Status;
 import com.peterMoon.kakaoPay.repository.CouponRepository;
-import com.peterMoon.kakaoPay.utils.CouponUtils;
 
 @SpringBootTest
 public class CouponServiceImplTests {
@@ -51,14 +45,14 @@ public class CouponServiceImplTests {
 		Coupon coupon1 = Coupon.builder()
 					.id(1L)
 					.code("QWER1234")
-					.expireDate(new Date())
+					.expireDate(LocalDate.now())
 					.issuance(Status.N)
 					.use(Status.N)
 					.build();
 		Coupon coupon2 = Coupon.builder()
 				.id(2L)
 				.code("ASDF5678")
-				.expireDate(new Date())
+				.expireDate(LocalDate.now())
 				.issuance(Status.Y)
 				.use(Status.Y)
 				.build();
@@ -67,7 +61,7 @@ public class CouponServiceImplTests {
 		List<Coupon> statusYCoupons = Arrays.asList(coupon2);
 		
 		Mockito.when(couponRepository.findByIssuance(Status.Y)).thenReturn(statusYCoupons);
-		Mockito.when(couponRepository.findByExpireDate(new Date())).thenReturn(coupons);
+		Mockito.when(couponRepository.findByExpireDate(LocalDate.now())).thenReturn(coupons);
 		
 	}
 	
@@ -76,7 +70,7 @@ public class CouponServiceImplTests {
 		Coupon coupon = Coupon.builder()
 				.id(2L)
 				.code("ASDF5678")
-				.expireDate(new Date())
+				.expireDate(LocalDate.now())
 				.issuance(Status.Y)
 				.use(Status.Y)
 				.build();
@@ -95,14 +89,14 @@ public class CouponServiceImplTests {
 		Coupon coupon = Coupon.builder()
 				.id(2L)
 				.code("ASDF5678")
-				.expireDate(new Date())
+				.expireDate(LocalDate.now())
 				.issuance(Status.Y)
 				.use(Status.Y)
 				.build();
 		
 		List<Coupon> coupons = couponService.getExpiredCoupons();
 		
-		Mockito.verify(couponRepository, VerificationModeFactory.times(1)).findByExpireDate(new Date());
+		Mockito.verify(couponRepository, VerificationModeFactory.times(1)).findByExpireDate(LocalDate.now());
         Mockito.reset(couponRepository);
         
         assertThat(coupons).hasSize(1);

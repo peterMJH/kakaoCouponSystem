@@ -1,7 +1,7 @@
 package com.peterMoon.kakaoPay.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +31,8 @@ public class CouponServiceImpl implements CouponService{
 			Coupon coupon = Coupon.builder()
 						.code(rs.createCoupon())
 						.expireDate(rs.getExpireDate())
+						.issuance(Status.N)
+						.use(Status.N)
 						.build();
 			
 			Coupon result = couponRepository.save(coupon);
@@ -62,7 +64,7 @@ public class CouponServiceImpl implements CouponService{
 	
 	@Override
 	public List<Coupon> getExpiredCoupons() {
-		Date date = new Date();
+		LocalDate date = LocalDate.now();
 		return couponRepository.findByExpireDate(date);
 	}
 	

@@ -1,13 +1,16 @@
 package com.peterMoon.kakaoPay.repository;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import com.peterMoon.kakaoPay.entity.Coupon;
@@ -17,7 +20,7 @@ import com.peterMoon.kakaoPay.utils.CouponUtils;
 @DataJpaTest
 public class CouponRepositoryTest {
 
-	@Mock
+	@Autowired
 	private CouponRepository couponRepository;
 	
 	@BeforeEach
@@ -26,7 +29,7 @@ public class CouponRepositoryTest {
 		for(int i=0; i<5; i++) {
 			Coupon coupon = new Coupon();
 			coupon.setCode(cu.createCoupon());
-			coupon.setExpireDate(new Date());
+			coupon.setExpireDate(LocalDate.now().plusDays(3));
 			couponRepository.save(coupon);			
 		}
 	}
@@ -55,8 +58,28 @@ public class CouponRepositoryTest {
 		// init() set expireDate = today
 		List<Coupon> coupons = couponRepository.findAll();
 		// search coupons (expireDate = today)
-		List<Coupon> results = couponRepository.findByExpireDate(new Date());
+		List<Coupon> results = couponRepository.findByExpireDate(LocalDate.now());
 		
 		assertEquals(coupons.size(), results.size());
+	}
+	
+	@Test
+	public void findByIssuanceAndExpireDateBetween() {
+		int num = 0;
+		List<Coupon> coupons = couponRepository.findAll();
+		
+		for (Coupon coupon : coupons) {
+			coupon.setIssuance(Status.Y);
+			coupon.setExpireDate(LocalDate.now().minusDays(++num));
+			coupon.setMail("mjh9016@gmail.com");
+			couponRepository.save(coupon);
+		}
+		
+		List<Coupon> result = couponRepository.findByIssuanceAndExpireDateBetween(
+				Status.Y, 
+				LocalDate.now().minusDays(3), 
+				LocalDate.now());
+		
+		assertNotEquals(coupons.size(), result.size());
 	}
 }
