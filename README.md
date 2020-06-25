@@ -66,6 +66,8 @@ $ java -jar KakaoPayCouponSystem-0.0.1-SNAPSHOT.jar
 
 * swagger-ui 접속
 http://localhost:8080/swagger-ui.html
+* postman
+import (KakaoCouponSystem_API.postman_collection.json)
 ```
 ## API document
 ### 인증관련(Token 기반 API 인증 기능)
