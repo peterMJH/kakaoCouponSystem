@@ -25,6 +25,7 @@ public class CouponUtils {
 		return new String(resultStr);
 	}
 	
+	// 임의로 생성일로부터 3일 이후 만료 되도록 설정
 	public LocalDate getExpireDate() {
 		return LocalDate.now().plusDays(3);
 	}
