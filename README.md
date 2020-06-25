@@ -75,7 +75,7 @@ http://localhost:8080/swagger-ui.html
 POST - /sign-up
 ```
 
-* Request
+* RequestBody
 ```
 {
   "username": "string",
