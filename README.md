@@ -51,36 +51,156 @@ Rest API 기반 쿠폰시스템:
 * JPA
 * H2
 ## 실행방법
+```
+$ gin clone https://github.com/peterMJH/kakaoCouponSystem.git
+$ cd kakaoCouponSystem
+$ ./mvnw clean package
+$ cd target
+$ java -jar KakaoPayCouponSystem-0.0.1-SNAPSHOT.jar
 
-
+* swagger-ui 접속
+<http://localhost:8080/swagger-ui.html>
+```
 ## API document
-#### 랜덤한 코드 쿠폰을 N개 생성
+#### 랜덤한 코드 쿠폰을 N개 생성(명세조건-1번)
 * Method - URL
 ```
 POST - /api/coupons
 ```
 * Header
 ```
-"token" : eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwZXRlciIsImlhdCI6MTU5MzA1NTU0NywiZXhwIjoxNTkzMDU2MTQ3fQ.wjYA2A4GC3SNPMeqy6Q2XU8G9xnXmXphu8_wkdXNH6Q
+"token" : JWT
 ```
 * Request
 ```json
 {
-  "count": 1
+  "count": int
 }
 ```
-
 * Response
 ```json
 SUCCESS - 200 
+
 [
   {
-    "id": 1,
-    "code": "JSCVPXJ88HW50JP6",
-    "expireDate": "2020-06-28",
-    "issuance": "N",
-    "use": "N",
-    "mail": null
+    "code": "string",
+    "expireDate": "string",
+    "id": 0,
+    "issuance": "Y",
+    "mail": "string",
+    "use": "Y"
   }
 ]
+```
+
+#### 생성된 쿠폰중 하나를 사용자에게 지급(명세조건-2번)
+* Method - URL
+```
+PUT - /api/coupons
+```
+* Header
+```
+"token" : JWT
+```
+* Request
+```
+{
+  "issuance": Enum:String(Y/N),
+  "mail": String
+}
+```
+* Response
+```json
+SUCCESS - 200 
+
+CODE:String
+```
+
+#### 사용자에게 지급된 쿠폰을 조회(명세조건-3번)
+* Method - URL
+```
+GET - /api/coupons
+```
+* Header
+```
+"token" : JWT
+```
+* Request
+```
+-
+```
+* Response
+```json
+SUCCESS - 200 
+
+[
+  {
+    "code": "string",
+    "expireDate": "string",
+    "id": 0,
+    "issuance": "Y",
+    "mail": "string",
+    "use": "Y"
+  }
+]
+```
+
+#### 지급된 쿠폰중 하나를 사용/취소(명세조건-4번/5)
+* Method - URL
+```
+PUT - /coupons/{code}/use
+```
+* Header
+```
+"token" : JWT
+```
+* PathVariable
+```
+{code} : String //coupon code 
+```
+* Request
+```
+{
+  "useStatus": Enum:String(Y/N)
+}
+```
+* Response
+```json
+SUCCESS - 200 
+
+{
+  "code": "string",
+  "expireDate": "string",
+  "id": 0,
+  "issuance": "Y",
+  "mail": "string",
+  "use": "Y"
+}
+```
+
+#### 발급된 쿠폰중 당일 만료된 전체 쿠폰 목록을 조회(명세조건-6번)
+* Method - URL
+```
+GET - /api/coupons/expired
+```
+* Header
+```
+"token" : JWT
+```
+* Request
+```
+-
+```
+* Response
+```json
+SUCCESS - 200 
+
+{
+  "code": "string",
+  "expireDate": "string",
+  "id": 0,
+  "issuance": "Y",
+  "mail": "string",
+  "use": "Y"
+}
 ```
