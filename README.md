@@ -75,7 +75,7 @@ http://localhost:8080/swagger-ui.html
 POST - /sign-up
 ```
 
-* RequestBody
+* RequestBody(json)
 ```
 {
   "username": "string",
@@ -117,7 +117,7 @@ POST - /api/coupons
 ```
 "token" : JWT
 ```
-* RequestBody
+* RequestBody(json)
 ```
 {
   "count": integer
@@ -148,7 +148,7 @@ PUT - /api/coupons
 ```
 "token" : JWT
 ```
-* RequestBody
+* RequestBody(json)
 ```
 {
   "issuance": Enum:String(Y/N),
@@ -171,7 +171,7 @@ GET - /api/coupons
 ```
 "token" : JWT
 ```
-* RequestBody
+* RequestBody(json)
 ```
 -
 ```
@@ -204,7 +204,7 @@ PUT - /coupons/{code}/use
 ```
 {code} : String //coupon code 
 ```
-* RequestBody
+* RequestBody(json)
 ```
 {
   "useStatus": Enum:String(Y/N)
@@ -233,7 +233,7 @@ GET - /api/coupons/expired
 ```
 "token" : JWT
 ```
-* RequestBody
+* RequestBody(json)
 ```
 -
 ```
