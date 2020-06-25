@@ -7,18 +7,24 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.SignatureException;
 
 @Component
 public class JwtTokenProvider {
@@ -28,9 +34,11 @@ public class JwtTokenProvider {
 	
 	@Autowired
     private UserDetailsService userDetailsService;
+
+	private final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 	
 	private long tokenValidMilisecond = 1000L * 10 * 60; // 토큰 유효 시간(10분)
-    
+	
     @PostConstruct
     protected void init() {
     	secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
@@ -58,8 +66,21 @@ public class JwtTokenProvider {
     
 	// 유효성 체크
 	public boolean validateToken(String token) {
-		Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
-		return !claims.getBody().getExpiration().before(new Date());
+		try {
+			Jws<Claims> claims = Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
+			return !claims.getBody().getExpiration().before(new Date());
+		} catch (SignatureException | MalformedJwtException e) { 
+			// 서명 오류
+			logger.info("SignatureException");
+			return false;
+		} catch (ExpiredJwtException e) { 
+			// 유효 기간 만료
+			logger.info("ExpiredJwtException");
+			return false;
+		} catch(Exception e) {
+			SecurityContextHolder.clearContext();
+			return false;
+		}
 	}
    
 	public String resolveToken(HttpServletRequest request) {
