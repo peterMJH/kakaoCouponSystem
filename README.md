@@ -3,6 +3,7 @@
 * [개발환경](#개발환경)
 * [실행방법](#실행방법)
 * [API document](#API-document)  
+  * 인증관련(Token 기반 API 인증 기능)
   * 랜덤한 코드 쿠폰을 N개 생성(명세조건-1번)
   * 생성된 쿠폰중 하나를 사용자에게 지급(명세조건 2번)
   * 사용자에게 지급된 쿠폰을 조회(명세조건 3번)
@@ -67,6 +68,46 @@ $ java -jar KakaoPayCouponSystem-0.0.1-SNAPSHOT.jar
 http://localhost:8080/swagger-ui.html
 ```
 ## API document
+### 인증관련(Token 기반 API 인증 기능)
+#### 계정생성
+* Method - URL
+```
+POST - /sign-up
+```
+
+* Request
+```
+{
+  "username": "string",
+  "password": "string"
+}
+```
+* Response
+```
+SUCCESS - 200 
+
+{
+  "id": 0,
+  "password": "string",
+  "username": "string"
+}
+```
+#### 로그인(토큰발급)
+* Method - URL
+```
+GET - /sign-in
+```
+* RequestParameters
+```
+"username": "string"
+"password": "string"
+```
+* Response
+```
+SUCCESS - 200 
+
+(String)eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwZXRlciIsImlhdCI6MTU5MzA5OTY2MiwiZXhwIjoxNTkzMTAwMjYyfQ.t-lC6fV5R4CyEd4m16chfvAUUNpYXCvd-2yeczHb_5s
+```
 ### 랜덤한 코드 쿠폰을 N개 생성(명세조건 1번)
 * Method - URL
 ```
@@ -76,14 +117,14 @@ POST - /api/coupons
 ```
 "token" : JWT
 ```
-* Request
-```json
+* RequestBody
+```
 {
   "count": integer
 }
 ```
 * Response
-```json
+```
 SUCCESS - 200 
 
 [
@@ -107,7 +148,7 @@ PUT - /api/coupons
 ```
 "token" : JWT
 ```
-* Request
+* RequestBody
 ```
 {
   "issuance": Enum:String(Y/N),
@@ -115,7 +156,7 @@ PUT - /api/coupons
 }
 ```
 * Response
-```json
+```
 SUCCESS - 200 
 
 CODE:String
@@ -130,12 +171,12 @@ GET - /api/coupons
 ```
 "token" : JWT
 ```
-* Request
+* RequestBody
 ```
 -
 ```
 * Response
-```json
+```
 SUCCESS - 200 
 
 [
@@ -163,14 +204,14 @@ PUT - /coupons/{code}/use
 ```
 {code} : String //coupon code 
 ```
-* Request
+* RequestBody
 ```
 {
   "useStatus": Enum:String(Y/N)
 }
 ```
 * Response
-```json
+```
 SUCCESS - 200 
 
 {
@@ -192,12 +233,12 @@ GET - /api/coupons/expired
 ```
 "token" : JWT
 ```
-* Request
+* RequestBody
 ```
 -
 ```
 * Response
-```json
+```
 SUCCESS - 200 
 
 {
