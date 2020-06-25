@@ -194,7 +194,7 @@ SUCCESS - 200
 ### 지급된 쿠폰중 하나를 사용/취소(명세조건 4번/5번)
 * Method - URL
 ```
-PUT - /coupons/{code}/use
+PUT - /api/coupons/{code}/use
 ```
 * Header
 ```
