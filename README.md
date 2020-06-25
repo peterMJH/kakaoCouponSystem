@@ -57,7 +57,7 @@ Rest API 기반 쿠폰시스템:
 * H2
 ## 실행방법
 ```
-$ gin clone https://github.com/peterMJH/kakaoCouponSystem.git
+$ git clone https://github.com/peterMJH/kakaoCouponSystem.git
 $ cd kakaoCouponSystem
 $ ./mvnw clean package
 $ cd target
