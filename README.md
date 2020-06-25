@@ -62,7 +62,7 @@ $ java -jar KakaoPayCouponSystem-0.0.1-SNAPSHOT.jar
 <http://localhost:8080/swagger-ui.html>
 ```
 ## API document
-#### 랜덤한 코드 쿠폰을 N개 생성(명세조건-1번)
+### 랜덤한 코드 쿠폰을 N개 생성(명세조건-1번)
 * Method - URL
 ```
 POST - /api/coupons
@@ -74,7 +74,7 @@ POST - /api/coupons
 * Request
 ```json
 {
-  "count": int
+  "count": integer
 }
 ```
 * Response
@@ -116,7 +116,7 @@ SUCCESS - 200
 CODE:String
 ```
 
-#### 사용자에게 지급된 쿠폰을 조회(명세조건-3번)
+### 사용자에게 지급된 쿠폰을 조회(명세조건-3번)
 * Method - URL
 ```
 GET - /api/coupons
@@ -145,7 +145,7 @@ SUCCESS - 200
 ]
 ```
 
-#### 지급된 쿠폰중 하나를 사용/취소(명세조건-4번/5)
+### 지급된 쿠폰중 하나를 사용/취소(명세조건-4번/5번)
 * Method - URL
 ```
 PUT - /coupons/{code}/use
@@ -178,7 +178,7 @@ SUCCESS - 200
 }
 ```
 
-#### 발급된 쿠폰중 당일 만료된 전체 쿠폰 목록을 조회(명세조건-6번)
+### 발급된 쿠폰중 당일 만료된 전체 쿠폰 목록을 조회(명세조건-6번)
 * Method - URL
 ```
 GET - /api/coupons/expired
