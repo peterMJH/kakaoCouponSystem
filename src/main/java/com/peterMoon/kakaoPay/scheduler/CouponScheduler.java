@@ -22,8 +22,8 @@ public class CouponScheduler {
 	@Autowired
 	private CouponRepository couponRepository;
 	
-//	@Scheduled(cron= "0 0 0 * * ?")
-	@Scheduled(cron = "0 0/1 * * * ?")
+	//	발급된 쿠폰중 만료 3일전 메세지 발송 기능(명세조건 7번)
+	@Scheduled(cron= "0 0 0 * * ?")
 	public void expiredCouponJobSch() {
 		logger.info("## expiredCouponJobSch");
  		List<Coupon> coupons = couponRepository.findByIssuanceAndExpireDateBetween(
@@ -36,7 +36,7 @@ public class CouponScheduler {
 			LocalDate hiredDate = coupon.getExpireDate();
 			long resultDay = today.until(hiredDate, ChronoUnit.DAYS);
 			
-			logger.debug("## code : " + coupon.getCode() + "/ email : " + coupon.getMail() + "/ 남은 날짜 : " + resultDay);
+			logger.info("## code : " + coupon.getCode() + "/ email : " + coupon.getMail() + "/ 남은 날짜 : " + resultDay);
 			
 		}
 		

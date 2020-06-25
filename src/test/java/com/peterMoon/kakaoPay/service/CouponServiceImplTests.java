@@ -57,11 +57,11 @@ public class CouponServiceImplTests {
 				.use(Status.Y)
 				.build();
 		
-		List<Coupon> coupons = Arrays.asList(coupon1, coupon2);
+		List<Coupon> todayExpiredCoupons = Arrays.asList(coupon1, coupon2);
 		List<Coupon> statusYCoupons = Arrays.asList(coupon2);
 		
 		Mockito.when(couponRepository.findByIssuance(Status.Y)).thenReturn(statusYCoupons);
-		Mockito.when(couponRepository.findByExpireDate(LocalDate.now())).thenReturn(coupons);
+		Mockito.when(couponRepository.findByExpireDate(LocalDate.now())).thenReturn(todayExpiredCoupons);
 		
 	}
 	
@@ -86,20 +86,11 @@ public class CouponServiceImplTests {
 	
 	@Test
 	public void findByExpireDate() {
-		Coupon coupon = Coupon.builder()
-				.id(2L)
-				.code("ASDF5678")
-				.expireDate(LocalDate.now())
-				.issuance(Status.Y)
-				.use(Status.Y)
-				.build();
-		
 		List<Coupon> coupons = couponService.getExpiredCoupons();
 		
 		Mockito.verify(couponRepository, VerificationModeFactory.times(1)).findByExpireDate(LocalDate.now());
         Mockito.reset(couponRepository);
         
-        assertThat(coupons).hasSize(1);
-        assertEquals(coupons.get(0).getCode(), coupon.getCode());
+        assertThat(coupons).hasSize(2);
 	}
 }

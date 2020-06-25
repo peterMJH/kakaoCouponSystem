@@ -67,19 +67,4 @@ public class CouponServiceImpl implements CouponService{
 		LocalDate date = LocalDate.now();
 		return couponRepository.findByExpireDate(date);
 	}
-	
-	/* 이후부터 요건 아님 */
-	@Override
-	public Optional<Coupon> getCoupon(Long id) {
-		return couponRepository.findById(id);
-	}
-	@Override
-	public Coupon getCouponByCode(String code) {
-		return couponRepository.findByCode(code);
-	}
-	@Override
-	public List<Coupon> getAll() {
-		return couponRepository.findAll();
-	}
-	
 }

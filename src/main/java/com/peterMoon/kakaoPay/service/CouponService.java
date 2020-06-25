@@ -21,9 +21,4 @@ public interface CouponService {
 	
 	// 발급된 쿠폰중 당일 만료된 전체 쿠폰 목록 조회
 	List<Coupon> getExpiredCoupons();
-	
-	/* 이후부터 요건 아님 */
-	Coupon getCouponByCode(String code);
-	Optional<Coupon> getCoupon(Long id);
-	List<Coupon> getAll();
 }

@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -55,12 +53,12 @@ public class CouponRepositoryTest {
 		
 	@Test
 	public void findByExpireDate() {
-		// init() set expireDate = today
+		// init() set expireDate = 3 days later
 		List<Coupon> coupons = couponRepository.findAll();
 		// search coupons (expireDate = today)
 		List<Coupon> results = couponRepository.findByExpireDate(LocalDate.now());
 		
-		assertEquals(coupons.size(), results.size());
+		assertNotEquals(coupons.size(), results.size());
 	}
 	
 	@Test

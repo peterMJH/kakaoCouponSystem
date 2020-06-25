@@ -40,7 +40,7 @@ public class LoginControllerTest {
 	public void signUp() throws Exception {
 		mockMvc.perform(post("/sign-up")
 				.contentType(MediaType.APPLICATION_JSON)
-				.content(objectMapper.writeValueAsString(UserDTO.builder().username("peter").password("a12315").build())))
+				.content(objectMapper.writeValueAsString(UserDTO.builder().username("ally").password("a12315").build())))
 				.andDo(print())
 				.andExpect(status().isOk());
 	}
@@ -60,7 +60,7 @@ public class LoginControllerTest {
 		
 		MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
 		params.set("username", response.getUsername());
-		params.set("password", "aa");
+		params.set("password", "a12315");
 		
 		mockMvc.perform(get("/sign-in")
 				.params(params))
