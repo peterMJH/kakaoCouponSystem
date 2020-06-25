@@ -6,6 +6,39 @@
 * JPA
 * H2
 
+# API document
+### 랜덤한 코드 쿠폰을 N개 생성
+* Method - URL
+```
+POST - /api/coupons
+```
+* Header
+```
+"token" : eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwZXRlciIsImlhdCI6MTU5MzA1NTU0NywiZXhwIjoxNTkzMDU2MTQ3fQ.wjYA2A4GC3SNPMeqy6Q2XU8G9xnXmXphu8_wkdXNH6Q
+```
+* Request
+```json
+{
+  "count": 1
+}
+```
+
+* Response
+```json
+SUCCESS - 200 
+[
+  {
+    "id": 1,
+    "code": "JSCVPXJ88HW50JP6",
+    "expireDate": "2020-06-28",
+    "issuance": "N",
+    "use": "N",
+    "mail": null
+  }
+]
+```
+
+
 # 문제
 Rest API 기반 쿠폰시스템:  
 사용자에게 할인, 선물등 쿠폰을 제공하는 서비스를 개발하려 합니다.  
