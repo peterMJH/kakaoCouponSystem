@@ -64,7 +64,7 @@ $ cd target
 $ java -jar KakaoPayCouponSystem-0.0.1-SNAPSHOT.jar
 
 * swagger-ui 접속
-<http://localhost:8080/swagger-ui.html>
+http://localhost:8080/swagger-ui.html
 ```
 ## API document
 ### 랜덤한 코드 쿠폰을 N개 생성(명세조건 1번)
