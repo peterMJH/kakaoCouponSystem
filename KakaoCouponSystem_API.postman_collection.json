@@ -1,0 +1,273 @@
+{
+	"id": "a0e16c10-cf3c-ecd7-073d-755d1b5c7f2e",
+	"name": "KakaoCouponSystem_API",
+	"description": "",
+	"order": [
+		"9905dd6f-4529-327a-bc49-8dff4f14a312",
+		"4222fcf2-af95-6567-f084-321b09485b3d",
+		"221fbf20-18b6-dc2e-788f-11f88fadb8d6",
+		"5d283ee1-c55e-cbc7-58a1-fe229b791ec7",
+		"2f634870-b6b4-2113-5365-ecc80c61988e",
+		"1d5ce2de-56d4-7928-7e5c-d967ca288171",
+		"0d351b40-bc39-d5e6-1a7a-02525cf4affa"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1593099078189,
+	"owner": "3258203",
+	"public": false,
+	"requests": [
+		{
+			"id": "0d351b40-bc39-d5e6-1a7a-02525cf4affa",
+			"headers": "Content-Type: application/json\ntoken: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5IiwiaWF0IjoxNTkzMTAyMTc5LCJleHAiOjE1OTMxMDI3Nzl9.skYj-s_vCxpd1qy8U_DoBcNJXLjnf83A6S5CWhE4Hzs\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "token",
+					"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5IiwiaWF0IjoxNTkzMTAyMTc5LCJleHAiOjE1OTMxMDI3Nzl9.skYj-s_vCxpd1qy8U_DoBcNJXLjnf83A6S5CWhE4Hzs",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/coupons/expired",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "a0e16c10-cf3c-ecd7-073d-755d1b5c7f2e",
+			"data": null,
+			"dataMode": "params",
+			"name": "발급된 쿠폰중 당일 만료된 전체 쿠폰 목록을 조회(명세조건 6번)",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1593102664438,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "1d5ce2de-56d4-7928-7e5c-d967ca288171",
+			"headers": "Content-Type: application/json\ntoken: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5IiwiaWF0IjoxNTkzMTAyMTc5LCJleHAiOjE1OTMxMDI3Nzl9.skYj-s_vCxpd1qy8U_DoBcNJXLjnf83A6S5CWhE4Hzs\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "token",
+					"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5IiwiaWF0IjoxNTkzMTAyMTc5LCJleHAiOjE1OTMxMDI3Nzl9.skYj-s_vCxpd1qy8U_DoBcNJXLjnf83A6S5CWhE4Hzs",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/coupons/7AITYXT913KMO9SF/use",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "a0e16c10-cf3c-ecd7-073d-755d1b5c7f2e",
+			"data": [],
+			"dataMode": "raw",
+			"name": "지급된 쿠폰중 하나를 사용/취소(명세조건 4번/5번)",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1593102369751,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\r\n  \"useStatus\": \"Y\"\r\n}"
+		},
+		{
+			"id": "221fbf20-18b6-dc2e-788f-11f88fadb8d6",
+			"headers": "Content-Type: application/json\ntoken: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5IiwiaWF0IjoxNTkzMTAwNTQ1LCJleHAiOjE1OTMxMDExNDV9.lNuSf9u6XTovs3ATby1GgUksRigHt9nNTp_gCpJeu9A\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "token",
+					"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5IiwiaWF0IjoxNTkzMTAwNTQ1LCJleHAiOjE1OTMxMDExNDV9.lNuSf9u6XTovs3ATby1GgUksRigHt9nNTp_gCpJeu9A",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/coupons",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "a0e16c10-cf3c-ecd7-073d-755d1b5c7f2e",
+			"data": [],
+			"dataMode": "raw",
+			"name": "랜덤한 코드 쿠폰을 N개 생성(명세조건 1번)",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1593100690686,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\r\n  \"count\": 5\r\n}"
+		},
+		{
+			"id": "2f634870-b6b4-2113-5365-ecc80c61988e",
+			"headers": "Content-Type: application/json\ntoken: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5IiwiaWF0IjoxNTkzMTAxMzA3LCJleHAiOjE1OTMxMDE5MDd9.SNrgHmpHCHxkMyzKmPOmBS47Gva5wEmeJMJ0aQki1_0\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "token",
+					"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5IiwiaWF0IjoxNTkzMTAxMzA3LCJleHAiOjE1OTMxMDE5MDd9.SNrgHmpHCHxkMyzKmPOmBS47Gva5wEmeJMJ0aQki1_0",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/coupons",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "a0e16c10-cf3c-ecd7-073d-755d1b5c7f2e",
+			"data": null,
+			"dataMode": "params",
+			"name": "사용자에게 지급된 쿠폰을 조회(명세조건 3번)",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1593101818554,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "4222fcf2-af95-6567-f084-321b09485b3d",
+			"headers": "",
+			"headerData": [],
+			"url": "http://localhost:8080/sign-in?username=ally&password=a12315",
+			"queryParams": [
+				{
+					"key": "username",
+					"value": "ally",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "password",
+					"value": "a12315",
+					"equals": true,
+					"description": "",
+					"enabled": true
+				}
+			],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "GET",
+			"collectionId": "a0e16c10-cf3c-ecd7-073d-755d1b5c7f2e",
+			"data": null,
+			"dataMode": "params",
+			"name": "로그인(토큰발급)",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1593100560779,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {}
+		},
+		{
+			"id": "5d283ee1-c55e-cbc7-58a1-fe229b791ec7",
+			"headers": "Content-Type: application/json\ntoken: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5IiwiaWF0IjoxNTkzMTAxMzA3LCJleHAiOjE1OTMxMDE5MDd9.SNrgHmpHCHxkMyzKmPOmBS47Gva5wEmeJMJ0aQki1_0\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "token",
+					"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGx5IiwiaWF0IjoxNTkzMTAxMzA3LCJleHAiOjE1OTMxMDE5MDd9.SNrgHmpHCHxkMyzKmPOmBS47Gva5wEmeJMJ0aQki1_0",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/api/coupons",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "PUT",
+			"collectionId": "a0e16c10-cf3c-ecd7-073d-755d1b5c7f2e",
+			"data": [],
+			"dataMode": "raw",
+			"name": "생성된 쿠폰중 하나를 사용자에게 지급(명세조건 2번)",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1593101379835,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\r\n  \"issuance\": \"Y\",\r\n  \"mail\": \"ally@gmail.com\"\r\n}"
+		},
+		{
+			"id": "9905dd6f-4529-327a-bc49-8dff4f14a312",
+			"headers": "Content-Type: application/json\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/json",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:8080/sign-up",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "a0e16c10-cf3c-ecd7-073d-755d1b5c7f2e",
+			"data": [],
+			"dataMode": "raw",
+			"name": "계정생성",
+			"description": "계정생성",
+			"descriptionFormat": "html",
+			"time": 1593100351183,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "{\r\n  \"username\": \"ally\",\r\n  \"password\": \"a12315\"\r\n}"
+		}
+	]
+}

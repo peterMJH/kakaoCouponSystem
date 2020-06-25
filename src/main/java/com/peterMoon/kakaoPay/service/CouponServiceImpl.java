@@ -44,10 +44,14 @@ public class CouponServiceImpl implements CouponService{
 	@Override
 	public String setIssuanceCoupon(CouponDTO couponDTO) {
 		List<Coupon> coupons = couponRepository.findByIssuance(Status.N);
-		Coupon coupon = coupons.get(0);
-		coupon.setIssuance(Status.Y);
-		coupon.setMail(couponDTO.getMail());
-		return couponRepository.save(coupon).getCode();
+		if(coupons.size()>0) {
+			Coupon coupon = coupons.get(0);
+			coupon.setIssuance(Status.Y);
+			coupon.setMail(couponDTO.getMail());
+			return couponRepository.save(coupon).getCode();
+		} else {
+			return "item is out of stock";
+		}
 	}
 	
 	@Override
