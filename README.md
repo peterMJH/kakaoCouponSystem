@@ -1,7 +1,7 @@
-* ## [문제](#문제)
-* ## [개발환경](#개발환경)
-* ## [실행방법](#실행방법)
-* ## [API document](#API-document)
+* [문제](#문제)
+* [개발환경](#개발환경)
+* [실행방법](#실행방법)
+* [API document](#API-document)
 
 ## 문제
 Rest API 기반 쿠폰시스템:  
@@ -49,6 +49,8 @@ Rest API 기반 쿠폰시스템:
 * Maven
 * JPA
 * H2
+## 실행방법
+
 
 ## API document
 #### 랜덤한 코드 쿠폰을 N개 생성
