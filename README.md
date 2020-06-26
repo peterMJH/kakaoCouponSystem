@@ -153,8 +153,7 @@ PUT - /api/coupons
 * RequestBody(json)
 ```
 {
-  "issuance": Enum:String(Y/N),
-  "mail": String
+  "mail": "string"
 }
 ```
 * Response
@@ -209,7 +208,7 @@ PUT - /api/coupons/{code}/use
 * RequestBody(json)
 ```
 {
-  "useStatus": Enum:String(Y/N)
+  "useStatus": Enum:String(Y/N) // Y:사용, N취소
 }
 ```
 * Response
