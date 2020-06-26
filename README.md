@@ -80,8 +80,8 @@ POST - /sign-up
 * RequestBody(json)
 ```
 {
-  "username": "string",
-  "password": "string"
+  "username": "string", // 계정명
+  "password": "string"  // 패스워드
 }
 ```
 * Response
@@ -101,8 +101,8 @@ GET - /sign-in
 ```
 * RequestParameters
 ```
-"username": "string"
-"password": "string"
+"username": "string"  // 계정명
+"password": "string"  // 패스워드
 ```
 * Response
 ```
@@ -122,7 +122,7 @@ POST - /api/coupons
 * RequestBody(json)
 ```
 {
-  "count": integer
+  "count": integer // 생성할 N개
 }
 ```
 * Response
@@ -131,12 +131,12 @@ SUCCESS - 200
 
 [
   {
-    "code": "string",
-    "expireDate": "string",
-    "id": 0,
-    "issuance": "Y",
-    "mail": "string",
-    "use": "Y"
+    "id": 0,                   // PK
+    "code": "string",          // 쿠폰 코드
+    "expireDate": "string",    // 만료 일자
+    "issuance": "Y",           // 지급 여부
+    "use": "Y",                // 사용 여부
+    "mail": "string"           // 쿠폰 지급 받은 사용자 메일
   }
 ]
 ```
@@ -153,14 +153,14 @@ PUT - /api/coupons
 * RequestBody(json)
 ```
 {
-  "mail": "string"
+  "mail": "string" // 지급할 사용자 메일(만료 알림 시 사용)
 }
 ```
 * Response
 ```
 SUCCESS - 200 
 
-CODE:String
+CODE:String  // 쿠폰 코드
 ```
 
 ### 사용자에게 지급된 쿠폰을 조회(명세조건 3번)
@@ -182,12 +182,12 @@ SUCCESS - 200
 
 [
   {
-    "code": "string",
-    "expireDate": "string",
-    "id": 0,
-    "issuance": "Y",
-    "mail": "string",
-    "use": "Y"
+    "id": 0,                   // PK
+    "code": "string",          // 쿠폰 코드
+    "expireDate": "string",    // 만료 일자
+    "issuance": "Y",           // 지급 여부
+    "use": "Y",                // 사용 여부
+    "mail": "string"           // 쿠폰 지급 받은 사용자 메일
   }
 ]
 ```
@@ -203,12 +203,12 @@ PUT - /api/coupons/{code}/use
 ```
 * PathVariable
 ```
-{code} : String //coupon code 
+{code} : String  // 쿠폰 코드 
 ```
 * RequestBody(json)
 ```
 {
-  "useStatus": Enum:String(Y/N) // Y:사용, N취소
+  "useStatus": Enum:String(Y/N) // 쿠폰 사용 여부(Y:사용, N취소)
 }
 ```
 * Response
@@ -216,12 +216,12 @@ PUT - /api/coupons/{code}/use
 SUCCESS - 200 
 
 {
-  "code": "string",
-  "expireDate": "string",
-  "id": 0,
-  "issuance": "Y",
-  "mail": "string",
-  "use": "Y"
+    "id": 0,                   // PK
+    "code": "string",          // 쿠폰 코드
+    "expireDate": "string",    // 만료 일자
+    "issuance": "Y",           // 지급 여부
+    "use": "Y",                // 사용 여부
+    "mail": "string"           // 쿠폰 지급 받은 사용자 메일
 }
 ```
 
@@ -243,12 +243,12 @@ GET - /api/coupons/expired
 SUCCESS - 200 
 
 {
-  "code": "string",
-  "expireDate": "string",
-  "id": 0,
-  "issuance": "Y",
-  "mail": "string",
-  "use": "Y"
+    "id": 0,                   // PK
+    "code": "string",          // 쿠폰 코드
+    "expireDate": "string",    // 만료 일자
+    "issuance": "Y",           // 지급 여부
+    "use": "Y",                // 사용 여부
+    "mail": "string"           // 쿠폰 지급 받은 사용자 메일
 }
 ```
 
